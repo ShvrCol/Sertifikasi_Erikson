@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <title>Katalog Buku</title>
+    <title>Pengembalian</title>
 </head>
 <body>
     <header>
@@ -37,36 +37,37 @@
             </div>
         </nav>
     </header>
-    <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
-        <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
-            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-                <h2 class="mt-5 mb-5 text-center text-2xl font-bold text-gray-900 dark:text-white">Katalog</h2>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-4 py-3">Judul</th>
-                                <th scope="col" class="px-4 py-3">Pembuat</th>
-                                <th scope="col" class="px-4 py-3">Penerbit</th>
-                                <th scope="col" class="px-4 py-3">Tahun Terbit</th>
-                                <th scope="col" class="px-4 py-3">Stok</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ( $koleksiBuku as $hasilKoleksi)
-                            <tr class="border-b dark:border-gray-700 hover:bg-emerald-100">
-                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$hasilKoleksi->judul}}</th>
-                                <td class="px-4 py-3">{{$hasilKoleksi->pembuat}}</td>
-                                <td class="px-4 py-3">{{$hasilKoleksi->penerbit}}</td>
-                                <td class="px-4 py-3">{{$hasilKoleksi->tahun_terbit}}</td>
-                                <td class="px-4 py-3">{{$hasilKoleksi->stok}}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+    <section class="bg-gray-50 dark:bg-gray-900 p-20">
+        <div class="bg-white rounded-xl shadow-md border py-8 px-4 mx-auto max-w-2xl lg:py-12">
+            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white text-center">Pengembalian Buku</h2>
+            <form action="/pengembalian" method="POST">
+                @csrf
+                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                    <div class="sm:col-span-2">
+                        <label for="id_pinjaman" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Pinjaman</label>
+                        <input type="text" name="id_pinjaman" id="id_pinjaman" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan ID Pinjaman" required="">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="id_buku" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Buku</label>
+                        <input type="text" name="id_buku" id="id_buku" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan ID Buku" required="">
+                    </div>
+                    <div class="w-full">
+                        <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Update Status Pengembalian</label>
+                        <input type="text" name="status" id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Status Pengembalian" required="">
+                    </div>
                 </div>
-            </div>
+                <div class="flex justify-between">
+                    <button type="submit" onclick="confirmUpdate()" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                        Kembalikan Buku
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
+    <script>
+        function confirmUpdate() {
+            alert("Pengembalian Success.");
+        }
+    </script>
 </body>
 </html>

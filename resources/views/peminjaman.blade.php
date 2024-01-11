@@ -45,7 +45,7 @@
     <section class="bg-gray-50 dark:bg-gray-900 p-8">
         <div class="bg-white rounded-xl shadow-md py-8 px-4 mx-auto max-w-2xl lg:py-8 border">
             <h2 class="mb-4 text-center text-2xl font-bold text-gray-900 dark:text-white">Input Peminjaman</h2>
-            <form action="/peminjaman" method="POST">
+            <form action="/peminjaman" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div class="sm:col-span-2">
@@ -53,11 +53,11 @@
                         <input type="text" name="id_pinjaman" id="id_pinjaman" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type ID Pinjaman" required="">
                     </div>
                     <div>
-                        <label for="id_member" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                        <label for="id_member" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Member</label>
                         <input type="text" name="id_member" id="id_member" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type ID Member" required="">
                     </div>
                     <div>
-                        <label for="id_buku" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                        <label for="id_buku" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Buku</label>
                         <input type="text" name="id_buku" id="id_buku" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type ID Buku" required="">
                     </div>
                     <div>
@@ -80,6 +80,9 @@
                 <button type="submit" onclick="confirmAdd()" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                     Tambahkan Peminjaman
                 </button>
+                <span>
+                    <input type="file" name="img" placeholder="Choose File" class="border">
+                </span>
             </form>
         </div>
     </section>

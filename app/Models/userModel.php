@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class userModel extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     //cek login
     public function cekLogin($tboxLogin){
@@ -24,7 +25,7 @@ class userModel extends Model
     //Untuk insert peminjam buku
     function post_insert($tboxinsertpeminjam)
     {
-        $queryinsert = "INSERT INTO pinjaman( id_pinjaman, id_member, id_buku, tgl_pinjaman, tgl_pengembalian, tgl_wajib_kembali, `status`, delete_pinjaman) VALUES (:add_idpeminjam, :add_idmember, :add_idbuku, :add_tglpinjam, :add_tglkembali, :add_tglwajibkembali, :add_status, '0')";
+        $queryinsert = "INSERT INTO pinjaman( id_pinjaman, id_member, id_buku, tgl_pinjaman, tgl_pengembalian, tgl_wajib_kembali, `status`, img, delete_pinjaman) VALUES (:add_idpeminjam, :add_idmember, :add_idbuku, :add_tglpinjam, :add_tglkembali, :add_tglwajibkembali, :add_status, :add_filename,'0')";
         $executequeryinsert = DB::insert($queryinsert, $tboxinsertpeminjam);
         return $executequeryinsert;
     }
@@ -65,6 +66,15 @@ class userModel extends Model
     function post_update($tboxupdatemenu)
     {
         $cmd = "UPDATE buku SET stok = :stok WHERE id_buku = :id_buku";
+        $result = DB::update($cmd, $tboxupdatemenu);
+        // dd($result);
+        return $result;
+    }
+
+    //pengembalian
+    function post_updatepinjaman($tboxupdatemenu)
+    {
+        $cmd = "UPDATE pinjaman SET `status` = :status_pjm WHERE id_pinjaman = :id_pinjaman AND id_buku = :id_buku";
         $result = DB::update($cmd, $tboxupdatemenu);
         // dd($result);
         return $result;

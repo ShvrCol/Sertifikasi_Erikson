@@ -48,7 +48,8 @@ class UserController extends Controller
         $add_tglkembali = $request->input('tgl_pengembalian');
         $add_tglwajibkembali = $request->input('tgl_wajib_pengembalian');
         $add_status = $request->input('status');
-
+        $add_filename = time().'.'.$request->img->extension();
+            $request->img->storeAs('public/img',$add_filename);
         $connpostinsert = new userModel();
 
         $tboxinsertpeminjam = [
@@ -59,7 +60,9 @@ class UserController extends Controller
             'add_tglkembali' => $add_tglkembali,
             'add_tglwajibkembali' => $add_tglwajibkembali,
             'add_status' => $add_status,
+            'add_filename' => $add_filename,
         ];
+
 
         $checkinsert = $connpostinsert->post_insert($tboxinsertpeminjam);
 
@@ -129,5 +132,24 @@ class UserController extends Controller
 
         $sambungpostupdate->post_update($tboxupdatemenu);
         return redirect('/dashboardadmin');
+    }
+
+    //function update pengembalian
+    public function send_updatestatuspinjaman(request $request)
+    {
+        $add_idpinjaman = $request->input('id_pinjaman');
+        $add_idbuku = $request->input('id_buku');
+        $add_status = $request->input('status');
+
+        $sambungpostupdate = new userModel();
+
+        $tboxupdatemenu = [
+            'id_pinjaman' => $add_idpinjaman,
+            'id_buku' => $add_idbuku,
+            'status_pjm' => $add_status
+        ];
+
+        $sambungpostupdate->post_updatepinjaman($tboxupdatemenu);
+        return redirect('/pengembalian');
     }
 }

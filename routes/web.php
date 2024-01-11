@@ -21,7 +21,6 @@ Route::post('/login', 'App\Http\Controllers\UserController@send_login');
 // insert routing peminjam
 Route::post('/peminjaman', 'App\Http\Controllers\UserController@send_addpeminjaman');
 
-
 //get function dari controller untuk koleksi buku pada page member
 Route::get('/', 'App\Http\Controllers\UserController@send_koleksi');
 
@@ -37,6 +36,8 @@ Route::post('/members', 'App\Http\Controllers\UserController@send_deletemembers'
 //get function update stok dari controller
 Route::post('/updatestok', 'App\Http\Controllers\UserController@send_updatestok');
 
+Route::post('/pengembalian', 'App\Http\Controllers\UserController@send_updatestatuspinjaman');
+
 //get function to show image
 Route::post('/dashboardadmin', 'App\Http\Controllers\UserController@send_AddImg');
 
@@ -46,4 +47,8 @@ Route::get('/peminjaman', function () {
 
 Route::get('/updatestok', function () {
     return view('updatestok');
+});
+
+Route::get('/pengembalian', function () {
+    return view('pengembalian');
 });
