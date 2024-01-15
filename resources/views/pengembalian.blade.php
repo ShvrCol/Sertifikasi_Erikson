@@ -63,6 +63,12 @@
                 </div>
             </form>
         </div>
+        <p class="text-center mt-10 text-4xl">Nota</p>
+        <div class="flex justify-center mt-5 gap-5">
+            <img class="w-72" src="{{ asset('storage/img/1704943019.jpg') }}" alt="Image Name">
+            <img class="w-72" src="{{ asset('storage/img/1704943120.jpg') }}" alt="Image Name">
+            <img class="w-72" src="{{ asset('storage/img/1704943326.jpg') }}" alt="Image Name">
+        </div>
     </section>
     <script>
         function confirmUpdate() {
